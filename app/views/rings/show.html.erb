@@ -1,0 +1,64 @@
+<% if user_signed_in? %>
+  <div class="row">
+    <% breadcrumb :ring, @ring %>
+    <div class="col-xs-9">
+      <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
+        <%= link_to(edit_ring_path(@ring)) do %>
+          <div class= "card card-body" style="background-color:#900; color:#fff; margin: 0px" >● <%= @ring.ring_name %></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <ul class="media-list">
+        <% @cards.each do |card| %>
+          <% user = card.user %>
+          <li class="media">
+            <div class="media-body">
+              <div class="col-md-12" style="vertical-align:middle;">
+                <div class="col-md-6" style="text-align:left; vertical-align:middle;">
+                    <span class="text-left">No.<%= card.id %> by <%= user.name %> posted at <%= card.created_at %> </span>
+                </div>
+                <div class="col-md-2">
+                  <% if card.is_ring?(@ring) %>
+                    <%= form_for(card.card_ring_links.find_by(ring_id: @ring.id), html: { method: :delete }) do |f| %>
+                      <%= hidden_field_tag :card_id, card.id %>
+                      <%= hidden_field_tag :ring_id, @ring.id %>
+                      <%= f.submit 'Unlink', class: 'btn btn-danger btn-block', style: 'padding: 6px 6px' %>
+                    <% end %>
+                  <% else %>
+                    <%= form_for(card.card_ring_links.build) do |f| %>
+                      <%= hidden_field_tag :card_id, card.id %>
+                      <%= hidden_field_tag :ring_id, @ring.id %>
+                      <%= f.submit 'Link', class: 'btn btn-primary btn-block', style: 'padding: 6px 6px' %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="col-md-2">
+                  <%= link_to 'Edit', edit_card_path(card), class: 'btn btn-warning btn-ms btn-block', style: 'padding: 6px 6px' %>
+                </div>
+                <div class="col-md-2">
+                  <%= link_to 'Delete', card, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-ms btn-block', style: 'padding: 6px 6px' %>
+                </div>
+                <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
+                  <div class= "card card-body" style="color:#888; margin: 0px" >○ <%= card.content_1 %></div>
+                </div>
+                <div class="col-md-1"> </div>
+                <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
+                  <div class= "card card-body" style="background-color: #eef; color:#888; margin: 0px" >○ <%= card.content_2 %></div>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        <%= paginate @cards %>
+      </ul>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to the Flashcard</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

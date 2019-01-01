@@ -1,0 +1,7 @@
+<%= form_for(@ring) do |f| %>
+  <div class="form-group", style="background-color: rgba(219, 219, 219, .5); margin-top: 1rem; padding: 1rem" >
+    <span>New ring</span>  
+    <%= f.text_area :ring_name, class: 'form-control', rows: 4, placeholder: "Input name of a ring.", style: "background-color: rgba(255, 167, 167, .5); margin-top: 1rem" %>
+  </div>
+  <%= f.submit 'Create', class: 'btn btn-primary btn-block' %>
+<% end %>

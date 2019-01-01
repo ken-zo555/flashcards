@@ -1,0 +1,101 @@
+<% if user_signed_in? %>
+  <div class="container">
+    <% breadcrumb :check %>
+    <div class="content-center brand">
+      <h3>FLASH CARDS</h3>
+      <p>Check: Front -> Back</p>
+      <p>Ring: <% if !@ring.nil? %><%= @ring.ring_name %><% end %></p>
+        <% if !@card.nil? %>
+          <% if @check_status =='question_view' %>
+            <p>Question</p>
+            <div class="col-md-12">
+              <div class="col-md-3"> </div>
+                <div class="col-md-6" style="text-align:left; background-color: #999; padding: 10px 10px">
+                      <div class= "card card-body" style="color:#888; margin: 0px" >○ <%= @card_content %></div>
+                </div>
+              <div class="col-md-3"> </div>
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-3"> </div>
+              <div class="col-md-6" style="padding: 10px 10px">
+                <%= link_to "Next",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'answer_view', :check_style=>'ox_front_back'}, {:class=>'btn btn-primary btn-block'} %>
+              </div>
+              <div class="col-md-3"> </div>
+            </div>
+          <% elsif @check_status =='answer_view' %>
+            <p>Answer</p>
+            <div class="col-md-12">
+              <div class="col-md-3"> </div>
+                <div class="col-md-6" style="text-align:left; background-color: #999; padding: 10px 10px">
+                      <div class= "card card-body" style="color:#888; margin: 0px" >○ <%= @card_content %></div>
+                </div>
+              <div class="col-md-3"> </div>
+            </div>
+            <% if @check_log.solved_question < @check_log.total_question %>
+              <div class="col-md-12">
+                <div class="col-md-3"> </div>
+                <div class="col-md-2" style="size: large, padding: 10px 10px">
+                  <%= link_to "○",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'question_view', :check_style=>'ox_front_back', :result_of_question=>'true'}, {:class=>'btn btn-primary btn-block'} %>
+                </div>
+                <div class="col-md-2"> </div>
+                <div class="col-md-2" style="size: large, padding: 10px 10px">
+                  <%= link_to "×",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'question_view', :check_style=>'ox_front_back', :result_of_question=>'false'}, {:class=>'btn btn-primary btn-block'} %>
+                </div>
+                <div class="col-md-3"> </div>
+              </div>
+            <% else %>
+              <div class="col-md-12">
+                <div class="col-md-3"> </div>
+                <div class="col-md-2" style="size: large, padding: 10px 10px">
+                  <%= link_to "○",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'result_view', :check_style=>'ox_front_back', :result_of_question=>'true'}, {:class=>'btn btn-primary btn-block'} %>
+                </div>
+                <div class="col-md-2"> </div>
+                <div class="col-md-2" style="size: large, padding: 10px 10px">
+                  <%= link_to "×",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'result_view', :check_style=>'ox_front_back', :result_of_question=>'false'}, {:class=>'btn btn-primary btn-block'} %>
+                </div>
+                <div class="col-md-3"> </div>
+              </div>
+            <% end %>                
+
+          <% elsif @check_status =='result_view' %>
+            <p>Result</p>
+            <div class="col-md-12">
+              <div class="col-md-3"> </div>
+                <div class="col-md-3" style="text-align:left; background-color: #999; padding: 10px 10px">
+                  <div class= "card card-body" style="background-color:#900; color:#fff; margin: 0px" >● <%= @ring.ring_name %></div>
+                </div>
+                <div class="col-md-3" style="text-align:left; background-color: #999; padding: 10px 10px">
+                  <div class= "card card-body" style="color:#888; margin: 0px" >Check cards: <%= @check_log.total_question.to_s %></div>
+                </div>
+              <div class="col-md-3"> </div>
+            </div>
+            <div class="col-md-12">
+              <div class="col-md-3"> </div>
+                <div class="col-md-3" style="text-align:left; background-color: #999; padding: 10px 10px">
+                      <div class= "card card-body" style="color:#888; margin: 0px" >○: <%= @check_log.correct_question.to_s %></div>
+                </div>
+                <div class="col-md-3" style="text-align:left; background-color: #999; padding: 10px 10px">
+                      <div class= "card card-body" style="color:#888; margin: 0px" >×: <%= @check_log.false_question.to_s %></div>
+                </div>
+              <div class="col-md-3"> </div>
+            </div>
+            <%= link_to "Top", root_url %>
+
+          <% else %>
+            <p>Error:check_status</p>
+            <%= link_to "Top", root_url %>
+          <% end %>
+        <% else %>
+          <p>No Question</p>
+        <% end %>
+    </div>
+    <p>check_status: <%= @check_status %></p>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="content-center brand">
+      <h3>WELLCOME TO</h3>
+      <h1>FLASH CARDS</h1>
+    </div>
+  </div>
+<% end %>

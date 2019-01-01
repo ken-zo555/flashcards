@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <div class="container">
+    <% breadcrumb :check %>
+    <div class="content-center">
+      <h3>FLASH CARDS</h3>
+      <p>Select Ring for Check!<p>
+        <%= render 'rings/rings_select_for_check', rings: @rings %>
+      <p>check_status: <%= @check_status %></p>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="content-center brand">
+      <h3>WELLCOME TO</h3>
+      <h1>FLASH CARDS</h1>
+    </div>
+  </div>
+<% end %>

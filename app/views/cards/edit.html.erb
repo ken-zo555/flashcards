@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <div class="center jumbotron", style="background-color: rgba(219, 219, 219, .5); margin-top: 3rem">
+    <% breadcrumb :card, @card %>
+    <%= form_for(@card) do |f| %>
+      <div class="form-group">
+        <span style="color:#555555">No.<%= f.label :content_1, @card.id %></span><br />
+        <%= f.text_area :content_1, class: 'form-control form-control-lg', placeholder: "Input front side of a card.", :size=>"40x5", style: "background-color: rgba(255, 167, 167, .5); margin-top: 1rem" %>
+        <%= f.text_area :content_2, class: 'form-control form-control-lg', placeholder: "Input front side of a card.", :size=>"40x5", style: "background-color: rgba(255, 167, 167, .5); margin-top: 1rem" %>
+        <%= f.submit 'OK', class: 'btn btn-primary btn-block' %>
+      </div>
+    <% end %>
+    <%= link_to "Back", :back %>
+  </div>
+  <div class="col-xs-12">
+      <%= render 'rings/rings_select', card: @card, rings: @rings, ring: @ring %>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to the Flashcard</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

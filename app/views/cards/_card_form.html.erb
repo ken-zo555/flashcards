@@ -1,0 +1,8 @@
+<%= form_for(@card) do |f| %>
+  <div class="form-group", style="background-color: rgba(219, 219, 219, .5); margin-top: 1rem; padding: 1rem" >
+    <span>New card</span>  
+    <%= f.text_area :content_1, class: 'form-control', rows: 4, placeholder: "Input front side of a card.", style: "background-color: rgba(255, 167, 167, .5); margin-top: 1rem" %>
+    <%= f.text_area :content_2, class: 'form-control', rows: 4, placeholder: "Input back side of a card.", style: "background-color: rgba(255, 167, 167, .5); margin-top: 1rem" %>
+  </div>
+  <%= f.submit 'Create', class: 'btn btn-primary btn-block' %>
+<% end %>

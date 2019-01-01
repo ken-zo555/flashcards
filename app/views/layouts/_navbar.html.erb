@@ -2,11 +2,9 @@
   <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="/" rel="tooltip" data-placement="bottom" target="_blank" >FLASH CARDS</a>
-        <span class="navbar-brand", data-placement="bottom" target="_blank" ><%= link_to "FLASH CARDS", root_url %></span> 
-          <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar bar1">
-            </span>
+        <a class="navbar-brand" href="/" rel="tooltip">FLASH CARDS</a>
+          <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" height="20px">
+            <span class="navbar-toggler-bar bar1"></span>
             <span class="navbar-toggler-bar bar2"></span>
             <span class="navbar-toggler-bar bar3"></span>
           </button>
@@ -15,20 +13,64 @@
         <ul class="navbar-nav">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <span class="nav-link" target="_blank>
+              <span class="nav-link">
+                <i class="now-ui-icons files_paper"></i>
+                <%= link_to 'Check', pages_ring_select_for_check_path %>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <i class="now-ui-icons files_paper"></i>
+                <%= link_to 'New Card', cards_front_path %>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <i class="now-ui-icons files_paper"></i>
+                <%= link_to 'Card List', cards_path %>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <i class="now-ui-icons files_paper"></i>
+                <%= link_to 'Ring List', rings_path %>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <i class="now-ui-icons files_paper"></i>
+                <%= link_to 'Check Log', check_logs_index_path %>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <i class="now-ui-icons ui-2_settings-90"></i>
+                <%= link_to 'Edit Profile', edit_user_registration_path %>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
                 <i class="now-ui-icons files_paper"></i>
                 <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
               </span>
             </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            	<ul class="dropdown-menu" style="background-color: rgba(255, 167, 167, .5)">
+            		<li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+            		<li role="separator" class="divider"></li>
+            		<li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+            	</ul>
+            </li>
           <% else %>
             <li class="nav-item">
-              <span class="nav-link" target="_blank>
+              <span class="nav-link">
                 <i class="now-ui-icons files_paper"></i>
                 <%= link_to "Sign up", new_user_registration_path %>
               </span>
             </li>
             <li class="nav-item">
-              <span class="nav-link" target="_blank>
+              <span class="nav-link">
                 <i class="now-ui-icons files_paper"></i>
                 <%= link_to "Sign in", new_user_session_path %>
               </span>

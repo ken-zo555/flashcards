@@ -10,7 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219025357) do
+ActiveRecord::Schema.define(version: 20181215094652) do
+
+  create_table "card_ring_links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "card_id"
+    t.integer  "ring_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_card_ring_links_on_card_id", using: :btree
+    t.index ["ring_id"], name: "index_card_ring_links_on_ring_id", using: :btree
+  end
+
+  create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content_1"
+    t.string   "content_2"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id", using: :btree
+  end
+
+  create_table "check_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "check_log_id"
+    t.string   "content_1"
+    t.string   "content_2"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "num_of_log"
+    t.index ["check_log_id"], name: "index_check_cards_on_check_log_id", using: :btree
+  end
+
+  create_table "check_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "ring_id"
+    t.integer  "period"
+    t.integer  "period_of_ring"
+    t.string   "status"
+    t.integer  "total_question"
+    t.integer  "solved_question"
+    t.integer  "correct_question"
+    t.integer  "false_question"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["ring_id"], name: "index_check_logs_on_ring_id", using: :btree
+    t.index ["user_id"], name: "index_check_logs_on_user_id", using: :btree
+  end
+
+  create_table "rings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "ring_name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rings_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -25,8 +77,16 @@ ActiveRecord::Schema.define(version: 20171219025357) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "card_ring_links", "cards"
+  add_foreign_key "card_ring_links", "rings"
+  add_foreign_key "cards", "users"
+  add_foreign_key "check_cards", "check_logs"
+  add_foreign_key "check_logs", "rings"
+  add_foreign_key "check_logs", "users"
+  add_foreign_key "rings", "users"
 end

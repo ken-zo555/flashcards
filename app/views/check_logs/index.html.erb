@@ -1,0 +1,30 @@
+<h3>Check Log</h3>
+<div class="table-responsive">
+  <table class="table table-bordered">
+      <div class="thead">
+        <tr>
+          <th>No.</th>
+          <th>Ring</th>
+          <th>Try No.</th>
+          <th>Question</th>
+          <th>Correct</th>
+          <th>False</th>
+          <th>Date</th>
+        </tr>
+      </div>
+      <div class="tbody">
+        <% @check_logs.each do |log| %>
+          <tr>
+            <td><%= log.period %></td>
+            <td><%= Ring.find_by(id: log.ring_id).ring_name %></td>
+            <td><%= log.period_of_ring %></td>
+            <td><%= log.total_question %></td>
+            <td><%= log.correct_question %></td>
+            <td><%= log.false_question %></td>
+            <td><%= log.created_at %></td>
+          </tr>
+        <% end %>
+      </div>
+  </table>
+</div>
+<%= paginate @check_logs %>
