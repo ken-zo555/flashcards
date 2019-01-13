@@ -1,41 +1,39 @@
-<ul class="media-list">
+<div class="raw">
   <% rings.each do |ring| %>
     <% user = ring.user %>
-    <li class="media">
-      <div class="media-body">
-        <div class="col-md-12" style="vertical-align:middle;">
-          <div class="col-md-8" style="text-align:left; vertical-align:middle;">
-              <span class="text-left">No.<%= ring.id %> by <%= user.name %> posted at <%= ring.created_at %> </span>
-          </div>
-          <div class="col-md-2">
-            <%= link_to 'Edit', edit_ring_path(ring), class: 'btn btn-warning btn-ms btn-block', style: 'padding: 6px 6px' %>
-          </div>
-          <div class="col-md-2">
-            <%= link_to 'Delete', ring, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-ms btn-block', style: 'padding: 6px 6px' %>
-          </div>
-            <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
-              <%= link_to(ring, method: :get) do %>
-                <div class= "card card-body" style="background-color:#900; color:#fff; margin: 0px" >● <%= ring.ring_name %></div>
-              <% end %>
-            </div>
-          <div class="col-md-1"> </div>
-          <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
-            <%= link_to(ring, method: :get) do %>
-              <div class= "card card-body" style="background-color:#aaa; color:#fff; margin: 0px" >
-                ●
-                <span text-align="center">
-                  <% if @count_cards_of_rings[ring.id] == nil %>
-                  Card x 0
-                  <% else %>
-                  Card x <%= @count_cards_of_rings[ring.id] %>
-                  <% end %>
-                </span>
-              </div>
-            <% end %>
-          </div>
-        </div>
+    <div class="media col-md-12" style="vertical-align:middle;">
+      <div class="col-md-8" style="text-align:left; vertical-align:middle;">
+          <span class="text-left">No.<%= ring.id %> by <%= user.name %> posted at <%= ring.created_at %> </span>
       </div>
-    </li>
+      <div class="col-md-2">
+        <%= link_to 'Edit', edit_ring_path(ring), class: 'btn btn-warning btn-ms btn-block', style: 'padding: 6px 6px' %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to 'Delete', ring, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-ms btn-block', style: 'padding: 6px 6px' %>
+      </div>
+    </div>
+    <div class="media col-md-12" style="vertical-align:middle;">
+      <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
+        <%= link_to(ring, method: :get) do %>
+          <div class= "card card-body" style="background-color:#900; color:#fff; margin: 0px" >● <%= ring.ring_name %></div>
+        <% end %>
+      </div>
+      <div class="col-md-1"> </div>
+      <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
+        <%= link_to(ring, method: :get) do %>
+          <div class= "card card-body" style="background-color:#aaa; color:#fff; margin: 0px" >
+            ●
+            <span text-align="center">
+              <% if @count_cards_of_rings[ring.id] == nil %>
+              Card x 0
+              <% else %>
+              Card x <%= @count_cards_of_rings[ring.id] %>
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% end %>
   <%= paginate rings %>
-</ul>
+</div>

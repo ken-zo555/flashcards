@@ -18,7 +18,7 @@
             <div class="col-md-12">
               <div class="col-md-3"> </div>
               <div class="col-md-6" style="padding: 10px 10px">
-                <%= link_to "Next",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'answer_view', :check_style=>'ox_front_back'}, {:class=>'btn btn-primary btn-block'} %>
+                <%= link_to "Next",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'answer_view', :check_style=>'ox_front_back'}, {'data-turbolinks' => false, :class => 'btn btn-primary btn-block'} %>
               </div>
               <div class="col-md-3"> </div>
             </div>
@@ -35,11 +35,11 @@
               <div class="col-md-12">
                 <div class="col-md-3"> </div>
                 <div class="col-md-2" style="size: large, padding: 10px 10px">
-                  <%= link_to "○",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'question_view', :check_style=>'ox_front_back', :result_of_question=>'true'}, {:class=>'btn btn-primary btn-block'} %>
+                  <%= link_to "○",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'question_view', :check_style=>'ox_front_back', :result_of_question=>'true'}, {'data-turbolinks' => false, :class => 'btn btn-primary btn-block'} %>
                 </div>
                 <div class="col-md-2"> </div>
                 <div class="col-md-2" style="size: large, padding: 10px 10px">
-                  <%= link_to "×",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'question_view', :check_style=>'ox_front_back', :result_of_question=>'false'}, {:class=>'btn btn-primary btn-block'} %>
+                  <%= link_to "×",{:controller=>'pages', :action=>'check_front', :method=> :get, :check_log_id=> @check_log.id, :ring_id=> @ring.id, :check_status=>'question_view', :check_style=>'ox_front_back', :result_of_question=>'false'}, {'data-turbolinks' => false, :class => 'btn btn-primary btn-block'} %>
                 </div>
                 <div class="col-md-3"> </div>
               </div>

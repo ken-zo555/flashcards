@@ -1,7 +1,7 @@
 <div class="footer">
   <% if user_signed_in? %>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
-      <i class="now-ui-icons files_paper"></i>
+      <i class="now-ui-icons business_bulb-63"></i>
       <%= link_to 'Check', pages_ring_select_for_check_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
@@ -9,11 +9,11 @@
         <%= link_to 'New Card', cards_front_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
-        <i class="now-ui-icons files_paper"></i>
+        <i class="now-ui-icons files_single-copy-04"></i>
         <%= link_to 'Card List', cards_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
-        <i class="now-ui-icons files_paper"></i>
+        <i class="now-ui-icons loader_refresh"></i>
         <%= link_to 'Ring List', rings_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
@@ -21,16 +21,16 @@
         <%= link_to 'Edit Profile', edit_user_registration_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
-        <i class="now-ui-icons files_paper"></i>
+        <i class="now-ui-icons sport_user-run"></i>
         <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
     </div>
   <% else %>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
-      <i class="now-ui-icons files_paper"></i>
+      <i class="now-ui-icons business_badge"></i>
       <%= link_to "Sign up", new_user_registration_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
-      <i class="now-ui-icons files_paper"></i>
+      <i class="now-ui-icons ui-1_lock-circle-open"></i>
       <%= link_to "Sign in", new_user_session_path %>
     </div>
   <% end %>
