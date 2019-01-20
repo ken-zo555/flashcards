@@ -9,11 +9,8 @@
           </div>
         <% end %>
     <%= link_to "Back", :back %>
+    <%= render 'cards/cards_select', ring: @ring, cards: @cards %>
   </div>
-  <div class="col-xs-12">
-      <%= render 'cards/cards_select', ring: @ring, cards: @cards %>
-  </div>
-
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

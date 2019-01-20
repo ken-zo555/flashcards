@@ -1,34 +1,32 @@
-<ul class="media-list">
-  <li class="media">
-    <div class="media-body">
-      <% cards.each do |card| %>
-        <% user = card.user %>
-        <div class="col-md-6" style="vertical-align:middle;">
-          <div class="col-md-8" style="text-align:left; background-color: #999; padding: 5px 10px">
-            <%= link_to(edit_card_path(card)) do %>
-              <div class= "card card-body col-md-12" style="background-color:#fff; color:#999; margin: 0px" >
-                ○ <%= card.content_1 %>
-              </div>
-            <% end %>
-          </div>
-          <div class="col-md-3">
-            <% if card.is_ring?(ring) %>
-              <%= form_for(card.card_ring_links.find_by(ring_id: ring.id), html: { method: :delete }) do |f| %>
-                <%= hidden_field_tag :card_id, card.id %>
-                <%= hidden_field_tag :ring_id, ring.id %>
-                <%= f.submit 'Unlink', class: 'btn btn-danger btn-block' %>
-              <% end %>
-            <% else %>
-              <%= form_for(card.card_ring_links.build) do |f| %>
-                <%= hidden_field_tag :card_id, card.id %>
-                <%= hidden_field_tag :ring_id, ring.id %>
-                <%= f.submit 'Link', class: 'btn btn-primary btn-block' %>
-              <% end %>
-            <% end %>
-          </div>
+<div class="row">
+  <% cards.each do |card| %>
+    <% user = card.user %>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-9" style="text-align:left; background-color: #999; padding: 5px 10px">
+          <%= link_to(edit_card_path(card)) do %>
+            <div class= "card card-body" style="background-color:#fff; color:#999; margin: 0px" >
+              ○ <%= card.content_1 %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+        <div class="col-md-3">
+          <% if card.is_ring?(ring) %>
+            <%= form_for(card.card_ring_links.find_by(ring_id: ring.id), html: { method: :delete }) do |f| %>
+              <%= hidden_field_tag :card_id, card.id %>
+              <%= hidden_field_tag :ring_id, ring.id %>
+              <%= f.submit 'Unlink', class: 'btn btn-danger btn-block', style: 'padding: 6px 6px' %>
+            <% end %>
+          <% else %>
+            <%= form_for(card.card_ring_links.build) do |f| %>
+              <%= hidden_field_tag :card_id, card.id %>
+              <%= hidden_field_tag :ring_id, ring.id %>
+              <%= f.submit 'Link', class: 'btn btn-primary btn-block', style: 'padding: 6px 6px' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </li>
+  <% end %>
   <%= paginate cards %>
-</ul>
+</div>

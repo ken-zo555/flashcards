@@ -2999,7 +2999,7 @@ textarea.form-control:active {
     line-height: 30px;
     color: #2c2c2c;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 14px;    /* TODO: Changed 14px*/
     text-transform: uppercase;
     background: transparent;
 }

@@ -1,28 +1,23 @@
-<ul class="media-list">
-  <li class="media">
-    <div class="media-body">
-      <% rings.each do |ring| %>
-        <% user = ring.user %>
-            <div class="col-md-6" style="vertical-align:middle;">
-              <div class="col-md-9" style="text-align:left; background-color: #999; padding: 5px 10px">
-                <%= link_to(controller: 'pages', action: 'check_front', method: :get, ring_id: ring.id, check_status: 'select', check_style: 'ox_front_back') do %>
-                  <div class= "card card-body col-md-10" style="background-color:#900; color:#fff; margin: 0px" >
-                    ● <%= ring.ring_name %>
-                  </div>
-                <% end %>
-                <div class="col-md-2" style="vertical-align:middle;">
-                  <span class="badge" >
-                    <% if @count_cards_of_rings[ring.id] == nil %>
-                      0
-                    <% else %>
-                      <%= @count_cards_of_rings[ring.id] %>
-                    <% end %>
-                  </span>
-                </div>
-              </div>
-            </div>
+<div class="row">
+  <% rings.each do |ring| %>
+    <% user = ring.user %>
+    <div class="col-md-1 hidden-sm"> </div>
+    <div class="col-md-4 col-sm-11" style="text-align:left; background-color: #999; padding: 5px 10px">
+      <%= link_to(controller: 'pages', action: 'check_front', method: :get, ring_id: ring.id, check_status: 'select', check_style: 'ox_front_back') do %>
+        <div class= "card card-body" style="background-color:#900; color:#fff; margin: 0px" >
+          ● <%= ring.ring_name %>
+        </div>
       <% end %>
     </div>
-  </li>
+    <div class="col-md-1 col-sm-1" style="text-align:left; vertical-align:middle;">
+      <span class="badge" >
+        <% if @count_cards_of_rings[ring.id] == nil %>
+          0
+        <% else %>
+          <%= @count_cards_of_rings[ring.id] %>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
   <%= paginate rings %>
-</ul>
+</div>

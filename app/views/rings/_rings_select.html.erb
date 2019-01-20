@@ -1,32 +1,38 @@
-<div class="raw">
+<div class="row">
   <% rings.each do |ring| %>
     <% user = ring.user %>
-    <div class="media col-md-12" style="vertical-align:middle; text-align:left; background-color: #999; padding: 5px 10px">
-      <%= link_to(ring, method: :get) do %>
-        <div class= "card card-body col-md-8" style="background-color:#900; color:#fff; margin: 0px" >
-          ● <%= ring.ring_name %>
+    <div class="col-md-4" style="vertical-align:middle; text-align:left; background-color: #999; padding: 5px 10px">
+      <div class ="row">
+        <div class="col-md-8">
+          <%= link_to(ring, method: :get) do %>
+            <div class= "card card-body" style="background-color:#900; color:#fff; margin: 0px" >
+              ● <%= ring.ring_name %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-      <span class="badge" >
-        <% if @count_cards_of_rings[ring.id] == nil %>
-          0
-        <% else %>
-          <%= @count_cards_of_rings[ring.id] %>
-        <% end %>
-      </span>
-      <% if card.is_ring?(ring) %>
-        <%= form_for(card.card_ring_links.find_by(ring_id: ring.id), html: { method: :delete }) do |f| %>
-          <%= hidden_field_tag :card_id, card.id %>
-          <%= hidden_field_tag :ring_id, ring.id %>
-          <%= f.submit 'Unlink', class: 'col-md-3 btn btn-danger btn-block' %>
-        <% end %>
-      <% else %>
-        <%= form_for(card.card_ring_links.build) do |f| %>
-          <%= hidden_field_tag :card_id, card.id %>
-          <%= hidden_field_tag :ring_id, ring.id %>
-          <%= f.submit 'Link', class: 'col-md-3 btn btn-primary btn-block' %>
-        <% end %>
-      <% end %>
+        <div class="col-md-4">
+          <span class="badge" >
+            <% if @count_cards_of_rings[ring.id] == nil %>
+              0
+            <% else %>
+              <%= @count_cards_of_rings[ring.id] %>
+            <% end %>
+          </span>
+          <% if card.is_ring?(ring) %>
+            <%= form_for(card.card_ring_links.find_by(ring_id: ring.id), html: { method: :delete }) do |f| %>
+              <%= hidden_field_tag :card_id, card.id %>
+              <%= hidden_field_tag :ring_id, ring.id %>
+              <%= f.submit 'Unlink', class: 'btn btn-danger btn-ms btn-block', style: 'padding: 6px 6px' %>
+            <% end %>
+          <% else %>
+            <%= form_for(card.card_ring_links.build) do |f| %>
+              <%= hidden_field_tag :card_id, card.id %>
+              <%= hidden_field_tag :ring_id, ring.id %>
+              <%= f.submit 'Link', class: 'btn btn-primary btn-ms btn-block', style: 'padding: 6px 6px' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
   <%= paginate rings %>
