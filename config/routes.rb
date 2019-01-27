@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get 'cards/back'
   get 'cards/back_save'
 
+  get 'rings/search'
+
   get 'check_logs/index'
+  get 'check_logs/search'
 
   resources :cards, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     member do

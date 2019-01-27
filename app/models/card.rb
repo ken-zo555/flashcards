@@ -20,4 +20,12 @@ class Card < ApplicationRecord
     self.rings.include?(ring)
   end
 
+  def self.search(search) #ここでのself.はCard.を意味する
+    if search
+      Card.where(['content_1 LIKE ? or content_2 LIKE ?', "%#{search}%", "%#{search}%"]) #検索とring_nameの部分一致を表示。Card.は省略可能
+    else
+      Card.all #全て表示。Card.は省略可能
+    end
+  end
+
 end

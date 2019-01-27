@@ -4081,11 +4081,13 @@ tbody.collapse.show {
     color: #868e96
 }
 
+/* pagination start. 
 .pagination {
     display: -ms-flexbox;
     display: flex;
     padding-left: 0;
     list-style: none;
+    font-size: 14px;
     border-radius: .25rem
 }
 
@@ -4164,6 +4166,8 @@ tbody.collapse.show {
     border-top-right-radius: .2rem;
     border-bottom-right-radius: .2rem
 }
+
+pagination end. */
 
 .badge {
     display: inline-block;

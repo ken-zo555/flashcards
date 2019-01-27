@@ -2,6 +2,7 @@ class CheckLogsController < ApplicationController
   
   def index
     @check_logs = current_user.check_logs.order('created_at DESC').page(params[:page])
+#    @check_logs = current_user.check_logs.order('created_at DESC').page(params[:page]).search(params[:search])
   end
 
   def create
@@ -15,4 +16,10 @@ class CheckLogsController < ApplicationController
     end
 
   end
+
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @rings = Ring.search(params[:search])
+  end
+  
 end

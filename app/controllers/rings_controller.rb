@@ -6,6 +6,8 @@ class RingsController < ApplicationController
   def index
     if user_signed_in?
       @ring = current_user.rings.build  # form_for 用
+      @search_word = "(All)"
+      @search_count = current_user.rings.search(params[:search]).count
       @rings = current_user.rings.order('id DESC').page(params[:page])
       counts(current_user)
     end
@@ -16,8 +18,6 @@ class RingsController < ApplicationController
       @user = current_user
       @rings = current_user.rings.order('id DESC').page(params[:page])
       @cards = current_user.cards.joins(:rings).where(rings:{id: @ring.id}).page(params[:page])
-#      @cards = current_user.cards.joins(:rings).preload(:rings).where(content_1: 'die Lampe').page(params[:page])
-#     @cards = @check_list_of_cards
     end
   end
 
@@ -64,6 +64,21 @@ class RingsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def search
+    if user_signed_in?
+      @ring = current_user.rings.build  # form_for 用
+      if params[:search] == ( nil || '' )
+        @search_word = "(All)"
+      else
+        @search_word = params[:search]
+      end
+      @search_count = current_user.rings.search(params[:search]).count
+      @rings = current_user.rings.search(params[:search]).order('id DESC').page(params[:page])
+      counts(current_user)
+      render 'rings/index'
+    end
+  end
+  
   private
   def set_ring
     @ring = Ring.find(params[:id])
@@ -72,5 +87,5 @@ class RingsController < ApplicationController
   def ring_params_1
     params.require(:ring).permit(:ring_name)
   end
-
+  
 end

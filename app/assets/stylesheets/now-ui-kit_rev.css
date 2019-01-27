@@ -2987,6 +2987,7 @@ textarea.form-control:active {
     color: #FFFFFF;
 }
 
+/* pagination start.
 .pagination .page-item .page-link {
     border: 0;
     border-radius: 30px !important;
@@ -2999,12 +3000,12 @@ textarea.form-control:active {
     line-height: 30px;
     color: #2c2c2c;
     cursor: pointer;
-    font-size: 14px;    /* TODO: Changed 14px*/
+    font-size: 14px;
     text-transform: uppercase;
     background: transparent;
 }
 
-.pagination .page-item .page-link:hover,
+.pagination.page-item .page-link:hover,
 .pagination .page-item .page-link:focus {
     color: #2c2c2c;
     background-color: rgba(222, 222, 222, 0.3);
@@ -3095,6 +3096,7 @@ textarea.form-control:active {
     border-color: #FFFFFF;
     color: #f96332;
 }
+ pagination end */
 
 button,
 input,

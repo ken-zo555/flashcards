@@ -3,21 +3,10 @@
     <div class="content-center brand">
       <h1>FLASH CARDS</h1>
       <h1>Hello <%= current_user.name %> !</h1>
-      <p>index:signed in</p>
       <p>
         <span class="badge">Card <%= @count_cards %></span>
         <span class="badge">Ring <%= @count_rings %></span>
       </p>
-      <p>
-        <% @count_cards_of_rings.each do |f| %>
-          <span class="badge">R<%= f[0] %> <%= f[1] %></span>
-        <% end %>
-      </p>
-      <p>last_card: <% if !@card.nil? %><%= @card.content_1 %><% end %></p>
-      <p>last_ring: <% if !@ring.nil? %><%= @ring.ring_name %><% end %></p>
-      <p>last_check_ring: <% if !@check.nil? %><%= Ring.find_by(id: @check.ring_id).ring_name %><% end %></p>
-      <p>current_check: <%= @current_check %></p>
-      
     </div>
   </div>
 <% else %>

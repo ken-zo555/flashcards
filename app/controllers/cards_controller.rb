@@ -7,7 +7,13 @@ class CardsController < ApplicationController
     if user_signed_in?
       @user = current_user
       @card = current_user.cards.build  # form_for 用
-      @cards = current_user.cards.order('created_at DESC').page(params[:page])
+      if params[:search] == ( nil || '' )
+        @search_word = "(All)"
+      else
+        @search_word = params[:search]
+      end
+      @search_count = current_user.cards.search(params[:search]).count
+      @cards = current_user.cards.search(params[:search]).order('created_at DESC').page(params[:page])
     end
   end
 
