@@ -2,7 +2,7 @@
   <% rings.each do |ring| %>
     <% user = ring.user %>
     <div class="col-md-1 hidden-sm"> </div>
-    <div class="col-md-4 col-sm-11" style="text-align:left; background-color: #999; padding: 5px 10px">
+    <div class="col-md-4 col-sm-11" style="text-align:left; background-color: rgba(60, 60, 60, .5); padding: 5px 10px">
       <%= link_to(controller: 'pages', action: 'check_front', method: :get, ring_id: ring.id, check_status: 'select', check_style: 'ox_front_back') do %>
         <div class= "card card-body" style="background-color:#900; color:#fff; margin: 0px" >
           ● <%= ring.ring_name %>

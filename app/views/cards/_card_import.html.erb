@@ -1,0 +1,14 @@
+<div class="form-group", style="background-color: rgba(60, 60, 60, .5); margin-top: 1rem; padding: 1rem" >
+  <span>Bulk upload</span>  
+  <%= form_tag({controller: "cards", action: "import", method: "post"}, {multipart: true, class: 'content-center'}) do %>
+    <%= file_field_tag :file ,title: 'Open file', class: 'btn btn-neutral btn-round' %>
+    <%= submit_tag "CSV Import" , class: 'btn btn-primary btn-round' %>
+  <% end %>
+  <p style="text-align: left;">
+    Format:CSV<br>
+    Encode:UTF-8<br>
+    Card_front_1,Card_back_1<br>
+    Card_front_2,Card_back_2<br>
+    …
+  </p>
+</div>

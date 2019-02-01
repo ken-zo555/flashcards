@@ -1,11 +1,9 @@
 <% if user_signed_in? %>
-  <div class="container">
+  <div class="center jumbotron", style="background-color: rgba(60, 60, 60, .5); margin-top: 0.5rem" >
     <% breadcrumb :check %>
-    <div class="content-center">
-      <h3>FLASH CARDS</h3>
-      <p>Select Ring for Check!<p>
-      <%= render 'rings/rings_select_for_check', rings: @rings %>
-    </div>
+    <h3>FLASH CARDS</h3>
+    <p>Select Ring for Check!<p>
+    <%= render 'rings/rings_select_for_check', rings: @rings %>
   </div>
 <% else %>
   <div class="container">

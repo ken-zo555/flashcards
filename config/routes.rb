@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     end
   end
   
+  #cards に限り、post で import 処理を許可する
+  resources :cards, only: :index do
+    collection { post :import }
+  end
+  
   resources :rings, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   resources :card_ring_links, only: [:create, :destroy]

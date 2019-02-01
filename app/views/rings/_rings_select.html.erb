@@ -1,7 +1,7 @@
 <div class="row">
   <% rings.each do |ring| %>
     <% user = ring.user %>
-    <div class="col-md-4" style="vertical-align:middle; text-align:left; background-color: #999; padding: 5px 10px">
+    <div class="col-md-4" style="vertical-align:middle; text-align:left; background-color: rgba(60, 60, 60, .5); padding: 5px 10px">
       <div class ="row">
         <div class="col-md-8">
           <%= link_to(ring, method: :get) do %>

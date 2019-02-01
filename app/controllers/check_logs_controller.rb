@@ -1,8 +1,17 @@
 class CheckLogsController < ApplicationController
   
   def index
-    @check_logs = current_user.check_logs.order('created_at DESC').page(params[:page])
-#    @check_logs = current_user.check_logs.order('created_at DESC').page(params[:page]).search(params[:search])
+    if user_signed_in?
+      @user = current_user
+      if params[:filter] == ( nil || '' )
+        @filter_condition = "(All)"
+      else
+        @filter_condition = params[:filter]
+      end
+      @check_logs_count = current_user.check_logs.search(params[:filter]).count
+      @check_logs = current_user.check_logs.search(params[:filter]).order('created_at DESC').page(params[:page])
+      #    @check_logs = current_user.check_logs.order('created_at DESC').page(params[:page])
+    end
   end
 
   def create
@@ -16,10 +25,4 @@ class CheckLogsController < ApplicationController
     end
 
   end
-
-  def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    @rings = Ring.search(params[:search])
-  end
-  
 end

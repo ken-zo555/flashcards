@@ -28,4 +28,26 @@ class Card < ApplicationRecord
     end
   end
 
+  def self.import_format_a(file) # ヘッダーあり、user_id,content_1,content_2
+    CSV.foreach(file.path, headers: true) do |row|
+      obj = new
+      obj.attributes = row.to_hash.slice(*updatable_attributes_a)
+      obj.save!
+    end
+  end
+  
+  def self.updatable_attributes_a
+    ["user_id","content_1","content_2"]
+  end
+
+  def self.import_format_b(file,user) # ヘッダーなし、content_1,content_2
+    CSV.foreach(file.path, headers: false) do |row|
+      obj = new
+      hs = { :user_id => user.id, :content_1 => "#{row[0]}", :content_2 => "#{row[1]}"}
+      obj.attributes = hs
+      obj.save!
+    end
+  end
+  
 end
+

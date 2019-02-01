@@ -2,7 +2,7 @@
   <div class="row">
     <% breadcrumb :ring, @ring %>
     <div class="col-md-3">
-      <div style="text-align:left; background-color: #999; padding: 10px 10px">
+      <div style="text-align:left; background-color: rgba(60, 60, 60, .5); padding: 10px 10px">
         <%= link_to(edit_ring_path(@ring)) do %>
           <div class= "card card-body" style="background-color:#900; color:#fff; margin: 0px" >● <%= @ring.ring_name %></div>
         <% end %>
@@ -36,11 +36,11 @@
             <div class="col-md-2">
               <%= link_to 'Delete', card, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-ms btn-block', style: 'padding: 6px 6px' %>
             </div>
-            <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
+            <div class="col-md-5" style="text-align:left; background-color: rgba(60, 60, 60, .5); padding: 10px 10px">
               <div class= "card card-body" style="color:#888; margin: 0px" >○ <%= card.content_1 %></div>
             </div>
             <div class="col-md-1"> </div>
-            <div class="col-md-5" style="text-align:left; background-color: #999; padding: 10px 10px">
+            <div class="col-md-5" style="text-align:left; background-color: rgba(60, 60, 60, .5); padding: 10px 10px">
               <div class= "card card-body" style="background-color: #eef; color:#888; margin: 0px" >○ <%= card.content_2 %></div>
             </div>
             <div class="col-md-1"> </div>

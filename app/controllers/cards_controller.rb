@@ -13,7 +13,7 @@ class CardsController < ApplicationController
         @search_word = params[:search]
       end
       @search_count = current_user.cards.search(params[:search]).count
-      @cards = current_user.cards.search(params[:search]).order('created_at DESC').page(params[:page])
+      @cards = current_user.cards.search(params[:search]).order('id DESC').page(params[:page])
     end
   end
 
@@ -103,7 +103,10 @@ class CardsController < ApplicationController
     end
   end
   
-  
+  def import
+    Card.import_format_b(params[:file], current_user)
+    redirect_to cards_url
+  end
   
 private
   def set_card

@@ -14,5 +14,5 @@ class Ring < ApplicationRecord
       Ring.all #全て表示。Ring.は省略可能
     end
   end
-
+  
 end

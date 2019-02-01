@@ -1,15 +1,15 @@
 <% if user_signed_in? %>
-  <div class="center jumbotron", style="background-color: rgba(219, 219, 219, .5); margin-top: 3rem" >
+  <div class="center jumbotron", style="background-color: rgba(60, 60, 60, .5); margin-top: 3rem" >
     <% breadcrumb :cards %>
     <%= form_tag({ controller: :cards, action: :front_save }, method: :get, class: 'form-group') do %>
         <div class="form-group">
-          <%= label :card, :id, "New card", style: "color:#555555" %><br />
+          <%= label :card, :id, "New card" %><br />
           <%= text_area :card, :content_1, class: 'form-control form-control-lg', :size=>"40x5", placeholder: "Input front side of a card.", style: "background-color: rgba(255, 167, 167, .5); margin-top: 1rem" %>
         </div>
         <%= submit_tag 'Next', class: 'btn btn-primary btn-block' %>
     <% end %>
     <%= link_to "Back", :back %>
-</div>
+  </div>
 
 <% else %>
   <div class="center jumbotron">

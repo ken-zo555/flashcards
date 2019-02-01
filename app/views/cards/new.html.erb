@@ -1,8 +1,11 @@
 <% if user_signed_in? %>
-  <div class="center jumbotron", style="background-color: rgba(219, 219, 219, .5); margin-top: 3rem" >
+  <div class="center jumbotron", style="background-color: rgba(60, 60, 60, .5); margin-top: 0.5rem" >
     <% breadcrumb :cards %>
     <%= render 'cards/card_form' %>
-    <%= link_to "Back", :back %>
+
+    <%= render 'cards/card_import' %>
+
+    <%= link_to "Back", :back , style: "margin-top: 1rem" %>
   </div>
 <% else %>
   <div class="center jumbotron">

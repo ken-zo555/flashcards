@@ -7,7 +7,7 @@ crumb :cards do
 end
 
 crumb :card do |card|
-  link "#{card.content_1}", card_path(card)
+  link "Card detail", card_path(card)
   parent :cards
 end
 
@@ -16,12 +16,16 @@ crumb :rings do
 end
 
 crumb :ring do |ring|
-  link "#{ring.ring_name}", ring_path(ring)
+  link "Ring detail", ring_path(ring)
   parent :rings
 end
 
 crumb :check do
   link 'Check', pages_ring_select_for_check_path
+end
+
+crumb :check_logs do
+  link 'Check log', check_logs_index_path
 end
 
 
