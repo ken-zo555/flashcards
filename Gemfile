@@ -58,3 +58,7 @@ gem 'devise'
 gem 'pry-rails'
 gem 'pry-byebug'
 gem 'pry-doc'
+
+group :production do
+  gem 'pg', '0.21.0'
+end
