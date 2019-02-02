@@ -1,12 +1,12 @@
 <div class="footer">
   <% if user_signed_in? %>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
-      <i class="now-ui-icons business_bulb-63"></i>
-      <%= link_to 'Check', pages_ring_select_for_check_path %>
+        <i class="now-ui-icons business_bulb-63"></i>
+        <%= link_to 'Check', pages_ring_select_for_check_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
         <i class="now-ui-icons files_paper"></i>
-        <%= link_to 'New Card', cards_front_path %>
+        <%= link_to 'New Card', new_card_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
         <i class="now-ui-icons files_single-copy-04"></i>
@@ -18,7 +18,7 @@
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
         <i class="now-ui-icons ui-2_settings-90"></i>
-        <%= link_to 'Edit Profile', edit_user_registration_path %>
+        <%= link_to 'Check Log', check_logs_index_path %>
     </div>
     <div class="btn" style="background-color: rgba(255, 167, 167, .5)">
         <i class="now-ui-icons sport_user-run"></i>

@@ -48,6 +48,7 @@ class PagesController < ApplicationController
       elsif @check_status == 'answer_view' # 答え表示
         @ring = Ring.find(params[:ring_id])
         @check_log =  CheckLog.find(params[:check_log_id])
+        @card_content_prev = CheckCard.find_by(check_log_id: @check_log.id, num_of_log: @check_log.solved_question).content_1
         @card_content = CheckCard.find_by(check_log_id: @check_log.id, num_of_log: @check_log.solved_question).content_2
         @check_log.solved_question += 1
         if @check_log.save
