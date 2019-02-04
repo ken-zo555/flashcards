@@ -4,10 +4,11 @@
     <aside class="col-md-3">
       <h5>Card Search</h5>
       <%= form_tag(cards_path,:method => 'get',class: 'form-group content-center' ) do %>
-        <%= text_field_tag :search ,'', class: 'form-control' %>
+        <%= text_field_tag :search ,@search_word, class: 'form-control' %>
+        <%= select :ring,:id, @ring_list.map{|t| [t.ring_name, t.id]}, :include_blank => "(All)" ,:selected	=> @ring_filter %>
         <%= submit_tag 'Search', :name => nil , class: 'btn btn-primary btn-round' %>
       <% end %>
-      <p>Search: <%= @search_word %>[<%= @search_count -%>]</p>
+      <p style="margin-bottom: 0rem">Search: <%= @search_count -%></p>
 
       <%= render 'cards/card_form' %>
       <%= link_to 'New Card', new_card_path, class: 'btn btn-info btn-block' %>

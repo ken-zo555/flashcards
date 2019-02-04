@@ -45,12 +45,7 @@ class ApplicationController < ActionController::Base
   def counts(user)
     @count_cards = user.cards.count
     @count_rings = user.rings.count
-
 # TODO: リングに紐づいているカード数のカウント ⇒　Viewで実装
-#    user.rings.each { |f|
-#     @count_cards_of_rings = Card.joins(:rings).select(where(user: user, rings: f).count
-#    @count_card_of_ring.store(f.id, f.ring_name)
-#    }
     @count_cards_of_rings = user.cards.joins(:rings).group(:ring_id).count
   end
   

@@ -27,6 +27,22 @@ class Card < ApplicationRecord
       Card.all #全て表示。Card.は省略可能
     end
   end
+  
+  def self.search_b(ring,search)
+    if search != nil then
+      if ring == "(ALL)" || ring == nil || ring == '' then
+        self.where(['content_1 LIKE ? or content_2 LIKE ?', "%#{search}%", "%#{search}%"])
+      else
+        self.joins(:rings).where(['ring_id = ? ', ring ]).where(['content_1 LIKE ? or content_2 LIKE ?', "%#{search}%", "%#{search}%"]) #検索とring_nameの部分一致を表示。Card.は省略可能
+      end
+    else
+      if ring == "(ALL)" || ring == nil || ring == '' then
+        Card.all  #全て表示。Card.は省略可能
+      else
+        self.joins(:rings).where(['ring_id = ? ', ring ])
+      end
+    end
+  end
 
   def self.import_format_a(file) # ヘッダーあり、user_id,content_1,content_2
     CSV.foreach(file.path, headers: true) do |row|

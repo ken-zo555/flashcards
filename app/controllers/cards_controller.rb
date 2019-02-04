@@ -7,13 +7,21 @@ class CardsController < ApplicationController
     if user_signed_in?
       @user = current_user
       @card = current_user.cards.build  # form_for 用
-      if params[:search] == ( nil || '' )
-        @search_word = "(All)"
+      @ring_list = current_user.rings.all # search用
+      @params_ring = params[:ring] == nil ? "(ALL)" : params[:ring].dig(:id)
+      if (@params_ring == nil)||(@params_ring == '')||(@params_ring == "(All)")
+        @ring_filter = "(All)"
+      else
+        @ring_filter = @params_ring
+      end
+
+      if (params[:search] == nil)||(params[:search] == '')
+        @search_word = nil
       else
         @search_word = params[:search]
       end
-      @search_count = current_user.cards.search(params[:search]).count
-      @cards = current_user.cards.search(params[:search]).order('id DESC').page(params[:page])
+      @search_count = current_user.cards.search_b(@params_ring,params[:search]).count
+      @cards = current_user.cards.search_b(@params_ring,params[:search]).order('id DESC').page(params[:page])
     end
   end
 
